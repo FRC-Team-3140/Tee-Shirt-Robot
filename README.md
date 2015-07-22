@@ -8,7 +8,7 @@ Code to drive Team 3140's PR t-shirt cannon robot. The robot uses the follow:
 
 ## TO-DO LIST
 - [x] Create repository, README, and .gitignore
-- [ ] Start work on basic mecanum
+- [x] Start work on basic mecanum
 - [ ] Once basic is done, transition to a **F**ield **O**riented **D**rive system, for ease of driving
 - [ ] Work on shooter code
 - [ ] Work on basic media: lights and sounds
