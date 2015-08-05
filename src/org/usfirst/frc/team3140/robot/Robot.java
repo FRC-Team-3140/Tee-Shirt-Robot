@@ -1,8 +1,7 @@
 
 package org.usfirst.frc.team3140.robot;
 
-import javax.print.attribute.standard.Media;
-
+import org.usfirst.frc.team3140.robot.subsystems.Arduino;
 import org.usfirst.frc.team3140.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3140.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team3140.robot.subsystems.Wormdrive;
@@ -24,7 +23,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain dt;
 	public static Pneumatics air;
-	public static Media med;
+	public static Arduino med;
 	public static Wormdrive wd;
 	
     Command AutonomousCommand;
@@ -36,10 +35,15 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	dt = DriveTrain.getInstance();
     	air = Pneumatics.getInstance();
-    	//med = Media.getInstance(); Don't know what is wrong with this...
+    	med = Arduino.getInstance();
     	wd = Wormdrive.getInstance();
     	
-    	oi = new OI();
+    	try {
+			oi = new OI();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	public void disabledPeriodic() {

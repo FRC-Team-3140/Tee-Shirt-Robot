@@ -23,4 +23,8 @@ public class SmartJoystick extends Joystick {
 		return (Math.pow(super.getMagnitude(), 3) * 4);
 	}
 	
+	public double getSmartPOV() {
+		return super.getPOV();
+	}
+	
 }
