@@ -15,7 +15,7 @@ public class SmartJoystick extends Joystick {
 	}
 
 	// Gets the rotation of the joystick along the Z-axis
-	public double getSmartRotation() {
+	public double getSmartZ() {
 		return Math.pow(super.getTwist(), 3); // May need to switch to getZ()
 	}
 

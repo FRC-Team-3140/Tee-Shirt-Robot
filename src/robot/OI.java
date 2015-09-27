@@ -9,7 +9,6 @@ import robot.commands.FireLeft;
 import robot.commands.FireMiddle;
 import robot.commands.FireRight;
 import robot.commands.FireSalvo;
-import robot.commands.MediaCtrl;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,7 +22,7 @@ public class OI implements RobotMap {
 	private static SmartJoystick smartJoystick;
 	private static HatSwitch pov;
 	private JoystickButton toggleLights, toggleSound, fireL, fireM, fireR,
-			fireS, play1, play2, play3, play4, play5, play6;
+			fireS;
 
 	/********************************************************************************
 	 * Assigns joysticks to ports defined by RobotMap 
@@ -63,21 +62,15 @@ public class OI implements RobotMap {
 	 * @throws InterruptedException
 	 ********************************************************************************/
 	private void check() throws InterruptedException {
-		//ToggleLights.whenPressed(new FireShot());
-		toggleSound.whenPressed(new MediaCtrl("Toggle"));
 		fireL.whenPressed(new FireLeft());
 		fireM.whenPressed(new FireMiddle());
 		fireR.whenPressed(new FireRight());
 		fireS.whenPressed(new FireSalvo());
 		
-		pov.UP.whenActive(new Lift(0.5));
+		pov.UP.whenActive(new Lift(0.1));
 		pov.UP.whenInactive(new Lift(0));
-		pov.DOWN.whenActive(new Lift(-0.5));
-		//play1.whenPressed(new MediaCtrl("Alpha"));
-		//play2.whenPressed(new MediaCtrl("Bravo"));
-		//play3.whenPressed(new MediaCtrl("Charlie"));
-		//play4.whenPressed(new MediaCtrl("Delta"));
-		//play5.whenPressed(new MediaCtrl("Echo"));
+		pov.DOWN.whenActive(new Lift(-0.1));
+		pov.DOWN.whenInactive(new Lift(0));
 	}
 	
 	/********************************************************************************

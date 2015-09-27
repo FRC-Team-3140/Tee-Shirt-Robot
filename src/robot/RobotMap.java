@@ -16,35 +16,29 @@ public interface RobotMap {
 	 * MOTOR CHANNELS *
 	 ******************/
 	// Ports for the talons
-	public static final int fL_Talon = 0;
-	public static final int fR_Talon = 1;
-	public static final int bL_Talon = 2;
-	public static final int bR_Talon = 3;
-	public static final int lift_Talon = 4;
+	public static final int fL_Talon = 9;
+	public static final int fR_Talon = 6;
+	public static final int bL_Talon = 8;
+	public static final int bR_Talon = 7;
+	public static final int lift_Talon = 5;
 
 	/***************
 	 * DIGITAL I/O *
 	 ***************/
 	// Ports for PDP feedback
 	public static final int p_FL_Talon = 0;
-	public static final int p_FR_Talon = 1;
-	public static final int p_BL_Talon = 2;
-	public static final int p_BR_Talon = 3;
-	public static final int p_Lift_Talon = 4;
+	public static final int p_FR_Talon = 15;
+	public static final int p_BL_Talon = 3;
+	public static final int p_BR_Talon = 12;
+	public static final int p_Lift_Talon = 13;
 
 	/**************
 	 * PNEUMATICS *
 	 **************/
 	// Ports for the solenoids
-	public static final int l_Solenoid_A = 0;
-	public static final int l_Solenoid_B = 1;
-	public static final int m_Solenoid_A = 2;
-	public static final int m_Solenoid_B = 3;
-	public static final int r_Solenoid_A = 4;
-	public static final int r_Solenoid_B = 5;
-	
-	public static Value CLOSED = DoubleSolenoid.Value.kForward;
-	public static Value OPEN = DoubleSolenoid.Value.kReverse;
+	public static final int l_Solenoid = 0;
+		public static final int m_Solenoid = 2;
+		public static final int r_Solenoid = 4;
 
 	/******************
 	 * JOYSTICK PORTS *
@@ -66,17 +60,9 @@ public interface RobotMap {
 	public static final int fire_Right = 4;
 	public static final int fire_Salvo = 6;
 
-	// Buttons for controlling sounds
-	public static final int play_1 = 7;
-	public static final int play_2 = 8;
-	public static final int play_3 = 9;
-	public static final int play_4 = 10;
-	public static final int play_5 = 11;
-	public static final int play_6 = 12;
-
 	/******************
 	 * PID CONTROLLER *
 	 ******************/
-	// TO-DO, maybe never...
+	// TODO, maybe never...
 
 }

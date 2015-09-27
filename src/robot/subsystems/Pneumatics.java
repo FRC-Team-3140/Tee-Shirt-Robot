@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import robot.RobotMap;
 import robot.commands.FireLeft;
@@ -12,11 +13,10 @@ import robot.commands.FireLeft;
  *
  */
 public class Pneumatics extends Subsystem implements RobotMap {
-	
-	private int Shots = 3;
+	public boolean safe = false;
 
 	private static Pneumatics instance;
-	private DoubleSolenoid left, middle, right;
+	private Solenoid left, middle, right;
 	private Compressor comp;
 
 	/*******************************************************************************
@@ -27,9 +27,9 @@ public class Pneumatics extends Subsystem implements RobotMap {
 	public Pneumatics() {
 		comp = new Compressor();
 		comp.start();
-		left = new DoubleSolenoid(l_Solenoid_A, l_Solenoid_B);
-		middle = new DoubleSolenoid(m_Solenoid_A, m_Solenoid_B);
-		right = new DoubleSolenoid(r_Solenoid_A, r_Solenoid_B);
+		left = new Solenoid(l_Solenoid);
+		middle = new Solenoid(m_Solenoid);
+		right = new Solenoid(r_Solenoid);
 	}
 
 	/*******************************************************************************
@@ -49,23 +49,29 @@ public class Pneumatics extends Subsystem implements RobotMap {
 	 *******************************************************************************/
 	// Fires the left-barrel
 	public void LeftShot() throws InterruptedException {
-		left.set(OPEN);
+		if(safe){
+		left.set(true);
 		TimeUnit.SECONDS.sleep(1);
-		left.set(CLOSED);
+		left.set(false);
+		}
 	}
 	
-	// Fires the middile-barrel
+	// Fires the middle-barrel
 	public void MiddleShot() throws InterruptedException {
-		middle.set(OPEN);
+		if(safe){
+		middle.set(true);
 		TimeUnit.SECONDS.sleep(1);
-		middle.set(CLOSED);
+		middle.set(false);
+		}
 	}
 	
 	// Fires the right-barrel
 	public void RightShot() throws InterruptedException {
-		right.set(OPEN);
+		if(safe){
+		right.set(true);
 		TimeUnit.SECONDS.sleep(1);
-		right.set(CLOSED);
+		right.set(false);
+		}
 	}
 	
 

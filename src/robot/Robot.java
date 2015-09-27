@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import robot.subsystems.Arduino;
 import robot.subsystems.DriveTrain;
 import robot.subsystems.Elevator;
 import robot.subsystems.Pneumatics;
@@ -22,7 +21,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain dt;
 	public static Pneumatics air;
-	public static Arduino med;
 	public static Elevator lift;
 	
     Command AutonomousCommand;
@@ -34,7 +32,6 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	dt = DriveTrain.getInstance();
     	air = Pneumatics.getInstance();
-    	med = Arduino.getInstance();
     	lift = Elevator.getInstance();
     	
     	try {

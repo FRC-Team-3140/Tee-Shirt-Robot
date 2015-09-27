@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.OI;
+import robot.Robot;
 import robot.RobotMap;
 import robot.commands.MecanumDrive;
 
@@ -59,10 +60,10 @@ public class DriveTrain extends Subsystem implements RobotMap {
 	 * http://thinktank.wpi.edu/resources/346/ControllingMecanumDrive.pdf
 	 *******************************************************************************/
 	public void mecanumDrive() {
-		fLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getRotation().getSmartRotation();
-		fRT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) - OI.getRotation().getSmartRotation();
-		bLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getRotation().getSmartRotation();
-		bRT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) - OI.getRotation().getSmartRotation();
+		fLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getRotation().getSmartZ();
+		fRT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) - OI.getRotation().getSmartZ();
+		bLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getRotation().getSmartZ();
+		bRT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) - OI.getRotation().getSmartZ();
 		
         maxV = Math.max(
         		Math.max(Math.abs(fLT), Math.abs(fRT)), 
@@ -75,10 +76,15 @@ public class DriveTrain extends Subsystem implements RobotMap {
         	bRT = bRT / maxV;
         }
         
-        fL.set(-fLT);
-        fR.set(fRT);
-        bL.set(-bLT);
-        bR.set(bRT);
+        if(fLT==0 && fRT==0 && bLT==0 && bRT==0){
+        	Robot.air.safe = true;
+        }else{
+        	Robot.air.safe = false;
+            fL.set(-fLT);
+            fR.set(fRT);
+            bL.set(-bLT);
+            bR.set(bRT);	
+        }
         
         logPower();
          
