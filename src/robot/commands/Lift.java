@@ -1,19 +1,18 @@
-  package org.usfirst.frc.team3140.robot.commands;
-
-import org.usfirst.frc.team3140.robot.Robot;
+package robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import robot.Robot;
 
 /**
  *
  */
-public class MediaCtrl extends Command {
-	
-	private String selection;
+public class Lift extends Command {
 
-	public MediaCtrl(String selection) {
-    		requires(Robot.med);
-    		this.selection = selection;
+	double speed;
+	
+    public Lift(double s) {
+    	requires(Robot.lift);
+    	this.speed = s;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +21,7 @@ public class MediaCtrl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.med.setLightSequence(selection);
+    	Robot.lift.driveLifter(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

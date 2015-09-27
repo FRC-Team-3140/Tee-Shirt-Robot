@@ -1,13 +1,15 @@
-package org.usfirst.frc.team3140.robot;
-
-import org.usfirst.frc.team3140.robot.commands.FireLeft;
-import org.usfirst.frc.team3140.robot.commands.FireMiddle;
-import org.usfirst.frc.team3140.robot.commands.FireRight;
-import org.usfirst.frc.team3140.robot.commands.FireSalvo;
-import org.usfirst.frc.team3140.robot.commands.MediaCtrl;
+package robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import library.HatSwitch;
+import library.SmartJoystick;
+import robot.commands.Lift;
+import robot.commands.FireLeft;
+import robot.commands.FireMiddle;
+import robot.commands.FireRight;
+import robot.commands.FireSalvo;
+import robot.commands.MediaCtrl;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,6 +21,7 @@ public class OI implements RobotMap {
 
 	public static Joystick joystick;
 	private static SmartJoystick smartJoystick;
+	private static HatSwitch pov;
 	private JoystickButton toggleLights, toggleSound, fireL, fireM, fireR,
 			fireS, play1, play2, play3, play4, play5, play6;
 
@@ -29,6 +32,7 @@ public class OI implements RobotMap {
 	 ********************************************************************************/
 	public OI() throws InterruptedException {
 		smartJoystick = new SmartJoystick(joystick_Drive);
+		pov = new HatSwitch(smartJoystick);
 		assoc();
 	}
 
@@ -65,6 +69,10 @@ public class OI implements RobotMap {
 		fireM.whenPressed(new FireMiddle());
 		fireR.whenPressed(new FireRight());
 		fireS.whenPressed(new FireSalvo());
+		
+		pov.UP.whenActive(new Lift(0.5));
+		pov.UP.whenInactive(new Lift(0));
+		pov.DOWN.whenActive(new Lift(-0.5));
 		//play1.whenPressed(new MediaCtrl("Alpha"));
 		//play2.whenPressed(new MediaCtrl("Bravo"));
 		//play3.whenPressed(new MediaCtrl("Charlie"));
@@ -83,11 +91,6 @@ public class OI implements RobotMap {
 
 	public static SmartJoystick getRotation() {
 		return smartJoystick;
-	}
-	
-	public static SmartJoystick getPOV() {
-		return smartJoystick;
-		
 	}
 
 }

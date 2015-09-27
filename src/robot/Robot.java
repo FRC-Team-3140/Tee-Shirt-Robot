@@ -1,15 +1,14 @@
 
-package org.usfirst.frc.team3140.robot;
-
-import org.usfirst.frc.team3140.robot.subsystems.Arduino;
-import org.usfirst.frc.team3140.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team3140.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team3140.robot.subsystems.Wormdrive;
+package robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import robot.subsystems.Arduino;
+import robot.subsystems.DriveTrain;
+import robot.subsystems.Elevator;
+import robot.subsystems.Pneumatics;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +23,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain dt;
 	public static Pneumatics air;
 	public static Arduino med;
-	public static Wormdrive wd;
+	public static Elevator lift;
 	
     Command AutonomousCommand;
 
@@ -36,7 +35,7 @@ public class Robot extends IterativeRobot {
     	dt = DriveTrain.getInstance();
     	air = Pneumatics.getInstance();
     	med = Arduino.getInstance();
-    	wd = Wormdrive.getInstance();
+    	lift = Elevator.getInstance();
     	
     	try {
 			oi = new OI();

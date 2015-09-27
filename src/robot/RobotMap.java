@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3140.robot;
+package robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -36,9 +36,15 @@ public interface RobotMap {
 	 * PNEUMATICS *
 	 **************/
 	// Ports for the solenoids
-	public static final int l_Solenoid = 0;
-	public static final int m_Solenoid = 1;
-	public static final int r_Solenoid = 2;
+	public static final int l_Solenoid_A = 0;
+	public static final int l_Solenoid_B = 1;
+	public static final int m_Solenoid_A = 2;
+	public static final int m_Solenoid_B = 3;
+	public static final int r_Solenoid_A = 4;
+	public static final int r_Solenoid_B = 5;
+	
+	public static Value CLOSED = DoubleSolenoid.Value.kForward;
+	public static Value OPEN = DoubleSolenoid.Value.kReverse;
 
 	/******************
 	 * JOYSTICK PORTS *

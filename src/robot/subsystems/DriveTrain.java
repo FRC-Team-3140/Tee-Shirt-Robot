@@ -1,14 +1,13 @@
-package org.usfirst.frc.team3140.robot.subsystems;
-
-import org.usfirst.frc.team3140.robot.OI;
-import org.usfirst.frc.team3140.robot.RobotMap;
-import org.usfirst.frc.team3140.robot.commands.MecanumDrive;
+package robot.subsystems;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import robot.OI;
+import robot.RobotMap;
+import robot.commands.MecanumDrive;
 
 /**
  * This subsystem is the literal base of the robot, its is of course the drivetrain,

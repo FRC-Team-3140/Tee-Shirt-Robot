@@ -1,9 +1,10 @@
-package org.usfirst.frc.team3140.robot;
+package library;
 
 import edu.wpi.first.wpilibj.Joystick;
+import library.HatSwitch.POVtrigger;
 
 public class SmartJoystick extends Joystick {
-
+	
 	public SmartJoystick(int port) {
 		super(port);
 	}
@@ -23,8 +24,5 @@ public class SmartJoystick extends Joystick {
 		return (Math.pow(super.getMagnitude(), 3) * 4);
 	}
 	
-	public double getSmartPOV() {
-		return super.getPOV();
-	}
 	
 }

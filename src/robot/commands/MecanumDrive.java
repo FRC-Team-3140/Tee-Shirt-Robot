@@ -1,18 +1,15 @@
-package org.usfirst.frc.team3140.robot.commands;
-
-import org.usfirst.frc.team3140.robot.Robot;
+package robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import robot.Robot;
 
 /**
  *
  */
-public class FireMiddle extends Command {
+public class MecanumDrive extends Command {
 
-    public FireMiddle() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.air);
+    public MecanumDrive() {
+        requires(Robot.dt);
     }
 
     // Called just before this Command runs the first time
@@ -21,11 +18,7 @@ public class FireMiddle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	try {
-			Robot.air.MiddleShot();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+    	Robot.dt.mecanumDrive();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,18 +1,18 @@
-package org.usfirst.frc.team3140.robot.commands;
-
-import org.usfirst.frc.team3140.robot.Robot;
+  package robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import robot.Robot;
 
 /**
  *
  */
-public class FireLeft extends Command {
+public class MediaCtrl extends Command {
+	
+	private String selection;
 
-    public FireLeft() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.air);
+	public MediaCtrl(String selection) {
+    		requires(Robot.med);
+    		this.selection = selection;
     }
 
     // Called just before this Command runs the first time
@@ -21,11 +21,7 @@ public class FireLeft extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	try {
-			Robot.air.LeftShot();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+    	Robot.med.setLightSequence(selection);
     }
 
     // Make this return true when this Command no longer needs to run execute()
