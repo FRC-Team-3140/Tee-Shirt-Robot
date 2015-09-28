@@ -1,14 +1,15 @@
 package robot.subsystems;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.OI;
 import robot.Robot;
 import robot.RobotMap;
 import robot.commands.MecanumDrive;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This subsystem is the literal base of the robot, its is of course the drivetrain,
@@ -20,10 +21,10 @@ import robot.commands.MecanumDrive;
 public class DriveTrain extends Subsystem implements RobotMap {
     
 	private static DriveTrain instance;
-	protected final Talon fL, fR, bL, bR;
 	private final PowerDistributionPanel pdp;
 	private double maxV, fLT, fRT, bLT, bRT;
-	private Timer timer; // Might need this, idk
+	RobotDrive dT;
+	private Timer timer;
 	
 	/*******************************************************************************
 	 * Constructor for the DriveTrain subsystem including all its components:
@@ -32,14 +33,17 @@ public class DriveTrain extends Subsystem implements RobotMap {
 	 * -Appropriate values are given to the SmartDashboard
 	 *******************************************************************************/
 	private DriveTrain() {
+		dT = new RobotDrive(fL_Talon, fR_Talon, bL_Talon, bR_Talon);
+		
+		/*
 		fL = new Talon(fL_Talon);
 		fR = new Talon(fR_Talon);
 		bL = new Talon(bL_Talon);
 		bR = new Talon(bR_Talon);
+		*/
 		
 		pdp = new PowerDistributionPanel();
-		
-		timer = new Timer();
+
 	}
 	
 	/*******************************************************************************
@@ -60,32 +64,7 @@ public class DriveTrain extends Subsystem implements RobotMap {
 	 * http://thinktank.wpi.edu/resources/346/ControllingMecanumDrive.pdf
 	 *******************************************************************************/
 	public void mecanumDrive() {
-		fLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getRotation().getSmartZ();
-		fRT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) - OI.getRotation().getSmartZ();
-		bLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getRotation().getSmartZ();
-		bRT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) - OI.getRotation().getSmartZ();
-		
-        maxV = Math.max(
-        		Math.max(Math.abs(fLT), Math.abs(fRT)), 
-        		Math.max(Math.abs(bLT), Math.abs(bRT)));
-        
-        if(maxV>1) {
-        	fLT = fLT / maxV;
-        	fRT = fRT / maxV;
-        	bLT = bLT / maxV;
-        	bRT = bRT / maxV;
-        }
-        
-        if(fLT==0 && fRT==0 && bLT==0 && bRT==0){
-        	Robot.air.safe = true;
-        }else{
-        	Robot.air.safe = false;
-            fL.set(-fLT);
-            fR.set(fRT);
-            bL.set(-bLT);
-            bR.set(bRT);	
-        }
-        
+        dT.mecanumDrive_Cartesian(OI.getXbox().getLeftX(), OI.getXbox().getRightX(), OI.getXbox().getLeftY(),0.0);
         logPower();
          
 	}
