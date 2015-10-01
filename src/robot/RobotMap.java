@@ -36,9 +36,9 @@ public interface RobotMap {
 	 * PNEUMATICS *
 	 **************/
 	// Ports for the solenoids
-	public static final int l_Solenoid = 0;
-		public static final int m_Solenoid = 2;
-		public static final int r_Solenoid = 4;
+	public static final int l_Solenoid = 2;
+		public static final int m_Solenoid = 1;
+		public static final int r_Solenoid = 0;
 
 	/******************
 	 * JOYSTICK PORTS *

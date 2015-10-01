@@ -13,10 +13,14 @@ public class SmartJoystick extends Joystick {
 	public double getSmartX() {
 		return Math.pow(super.getX(), 3);
 	}
+	
+	public double getSmartY() {
+		return Math.pow(super.getY(), 3);
+	}
 
 	// Gets the rotation of the joystick along the Z-axis
 	public double getSmartZ() {
-		return Math.pow(super.getTwist(), 3); // May need to switch to getZ()
+		return Math.pow(super.getTwist(), 3) ; // May need to switch to getZ()
 	}
 
 	// Gets the magnitude of the joystick, cubes it, and multiplies it by 4

@@ -1,14 +1,14 @@
 package robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import library.HatSwitch;
 import library.SmartJoystick;
-import library.XboxController;
+import robot.commands.Lift;
 import robot.commands.FireLeft;
 import robot.commands.FireMiddle;
 import robot.commands.FireRight;
 import robot.commands.FireSalvo;
-import robot.commands.Lift;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,9 +19,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI implements RobotMap {
 
 	public static Joystick joystick;
-	private static XboxController xbox;
+	private static SmartJoystick smartJoystick;
+	private static HatSwitch pov;
 	private JoystickButton toggleLights, toggleSound, fireL, fireM, fireR,
-			fireS;
+			fireS, lUp, lDown;
 
 	/********************************************************************************
 	 * Assigns joysticks to ports defined by RobotMap 
@@ -29,7 +30,30 @@ public class OI implements RobotMap {
 	 * @throws InterruptedException 
 	 ********************************************************************************/
 	public OI() throws InterruptedException {
-		xbox = new XboxController(joystick_Drive);
+		smartJoystick = new SmartJoystick(joystick_Drive);
+		pov = new HatSwitch(smartJoystick);
+		assoc();
+	}
+
+	/********************************************************************************
+	 * Initializes buttons and assigns them buttons defined by RobotMap 
+	 * Calls the check() method
+	 * @throws InterruptedException 
+	 ********************************************************************************/
+	private void assoc() throws InterruptedException {
+		//toggleLights = new JoystickButton(smartJoystick, toggle_Lights);
+		toggleSound = new JoystickButton(smartJoystick, toggle_Sound);
+		fireL = new JoystickButton(smartJoystick, 5);
+		fireM = new JoystickButton(smartJoystick, 3);
+		fireR = new JoystickButton(smartJoystick, 4);
+		fireS = new JoystickButton(smartJoystick, 6);
+		lUp = new JoystickButton(smartJoystick, 11);
+		lDown = new JoystickButton(smartJoystick, 12);
+		//play3 = new JoystickButton(smartJoystick, play_3);
+		//play4 = new JoystickButton(smartJoystick, play_4);
+		//play5 = new JoystickButton(smartJoystick, play_5);
+		//play6 = new JoystickButton(smartJoystick, play_6);
+		check();
 	}
 	
 	/********************************************************************************
@@ -37,19 +61,18 @@ public class OI implements RobotMap {
 	 * If a button is pressed, call the designated command
 	 * @throws InterruptedException
 	 ********************************************************************************/
-	private void check() throws InterruptedException {
-		xbox.x.whenPressed(new FireLeft());
-		xbox.y.whenPressed(new FireMiddle());
-		xbox.b.whenPressed(new FireRight());
-		xbox.a.whenPressed(new FireSalvo());
+	private void check() {
+		fireL.whenPressed(new FireLeft(true));
+		fireL.whenReleased(new FireLeft(false));
+		fireM.whenPressed(new FireMiddle(true));
+		fireM.whenReleased(new FireMiddle(true));
+		fireR.whenPressed(new FireRight(true));
+		fireS.whenReleased(new FireSalvo());
 		
-		xbox.dUp.whenActive(new Lift(0.5));
-		xbox.dUp.whenInactive(new Lift(0.0));
-		xbox.dDown.whenActive(new Lift(-0.5));
-		xbox.dDown.whenInactive(new Lift(0.0));
-		
-		
-		
+		lUp.whenPressed(new Lift(0.25));
+		lUp.whenReleased(new Lift(0));
+		lDown.whenPressed(new Lift(-0.25));
+		lDown.whenReleased(new Lift(0));
 	}
 	
 	/********************************************************************************
@@ -57,8 +80,8 @@ public class OI implements RobotMap {
 	 * Allows other classes to use value of joystick input
 	 ********************************************************************************/
 	
-	public static XboxController getXbox() {
-		return xbox;
+	public static SmartJoystick getJoystick() {
+		return smartJoystick;
 	}
 
 }

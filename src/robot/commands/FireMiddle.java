@@ -8,10 +8,13 @@ import robot.Robot;
  */
 public class FireMiddle extends Command {
 
-    public FireMiddle() {
+	private boolean set;
+	
+    public FireMiddle(boolean fire) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.air);
+    	set = fire;
     }
 
     // Called just before this Command runs the first time
@@ -20,11 +23,9 @@ public class FireMiddle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	try {
-			Robot.air.MiddleShot();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+    		Robot.air.MiddleShot(false);
+			Robot.air.MiddleShot(true);
+			Robot.air.MiddleShot(false);
     }
 
     // Make this return true when this Command no longer needs to run execute()

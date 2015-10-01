@@ -9,11 +9,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class FireSalvo extends CommandGroup {
     
-    public  FireSalvo() throws InterruptedException {
-    	addSequential(new FireLeft());
-    	TimeUnit.SECONDS.sleep(1);
-    	addSequential(new FireMiddle());
-    	TimeUnit.SECONDS.sleep(1);
-    	addSequential(new FireRight());
+    public  FireSalvo()  {
+    	addSequential(new FireLeft(true));
+    	addSequential(new FireLeft(false));
+    	addSequential(new FireMiddle(true));
+    	addSequential(new FireMiddle(false));
+    	addSequential(new FireRight(true));
+    	addSequential(new FireRight(false));
     }
 }

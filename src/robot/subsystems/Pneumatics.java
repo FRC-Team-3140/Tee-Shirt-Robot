@@ -13,7 +13,7 @@ import robot.commands.FireLeft;
  *
  */
 public class Pneumatics extends Subsystem implements RobotMap {
-	public boolean safe = false;
+	public boolean safe = true;
 
 	private static Pneumatics instance;
 	private Solenoid left, middle, right;
@@ -48,35 +48,29 @@ public class Pneumatics extends Subsystem implements RobotMap {
 	 * @throws InterruptedException 
 	 *******************************************************************************/
 	// Fires the left-barrel
-	public void LeftShot() throws InterruptedException {
+	public void LeftShot(boolean fire){
 		if(safe){
-		left.set(true);
-		TimeUnit.SECONDS.sleep(1);
-		left.set(false);
+		left.set(fire);
 		}
 	}
 	
 	// Fires the middle-barrel
-	public void MiddleShot() throws InterruptedException {
+	public void MiddleShot(boolean fire) {
 		if(safe){
-		middle.set(true);
-		TimeUnit.SECONDS.sleep(1);
-		middle.set(false);
+		middle.set(fire);
 		}
 	}
 	
 	// Fires the right-barrel
-	public void RightShot() throws InterruptedException {
+	public void RightShot(boolean fire){
 		if(safe){
-		right.set(true);
-		TimeUnit.SECONDS.sleep(1);
-		right.set(false);
+		right.set(fire);
 		}
 	}
 	
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new FireLeft());
+		setDefaultCommand(null);
 		// setDefaultCommand(new MySpecialCommand());
 	}
 }
