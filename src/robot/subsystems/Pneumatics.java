@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import robot.RobotMap;
+import robot.commands.CloseValves;
 import robot.commands.FireLeft;
 
 /**
  *
  */
 public class Pneumatics extends Subsystem implements RobotMap {
-	public boolean safe = true;
+	//public boolean safe = false;
 
 	private static Pneumatics instance;
 	private Solenoid left, middle, right;
-	private Compressor comp;
 
 	/*******************************************************************************
 	 * Constructor for the Pneumatics subsystem including all its components:
@@ -25,11 +25,12 @@ public class Pneumatics extends Subsystem implements RobotMap {
 	 * initialized
 	 *******************************************************************************/
 	public Pneumatics() {
-		comp = new Compressor();
-		comp.start();
 		left = new Solenoid(l_Solenoid);
 		middle = new Solenoid(m_Solenoid);
 		right = new Solenoid(r_Solenoid);
+		//left.set(false);
+		//middle.set(false);
+		//right.set(false);
 	}
 
 	/*******************************************************************************
@@ -48,29 +49,32 @@ public class Pneumatics extends Subsystem implements RobotMap {
 	 * @throws InterruptedException 
 	 *******************************************************************************/
 	// Fires the left-barrel
-	public void LeftShot(boolean fire){
-		if(safe){
-		left.set(fire);
-		}
-	}
+	public void LeftShot(){
+			left.set(false);
+			left.set(true);
+	} 
 	
 	// Fires the middle-barrel
-	public void MiddleShot(boolean fire) {
-		if(safe){
-		middle.set(fire);
-		}
+	public void MiddleShot() {
+			middle.set(false);
+			middle.set(true);
 	}
 	
 	// Fires the right-barrel
-	public void RightShot(boolean fire){
-		if(safe){
-		right.set(fire);
-		}
+	public void RightShot(){
+			right.set(false);
+			right.set(true);
+	}
+	
+	public void closeValves(){
+		left.set(false);
+		middle.set(false);
+		right.set(false);
 	}
 	
 
 	public void initDefaultCommand() {
-		setDefaultCommand(null);
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new CloseValves());
 	}
+	
 }

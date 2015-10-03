@@ -1,14 +1,15 @@
 package robot.subsystems;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import robot.OI;
 import robot.Robot;
 import robot.RobotMap;
 import robot.commands.MecanumDrive;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This subsystem is the literal base of the robot, its is of course the drivetrain,
@@ -20,8 +21,9 @@ import robot.commands.MecanumDrive;
 public class DriveTrain extends Subsystem implements RobotMap {
     
 	private static DriveTrain instance;
-	protected final Talon fL, fR, bL, bR;
+	//protected final Talon fL, fR, bL, bR;
 	private final PowerDistributionPanel pdp;
+	private RobotDrive dT;
 	private double maxV, fLT, fRT, bLT, bRT;
 	private Timer timer; // Might need this, idk
 	
@@ -32,10 +34,13 @@ public class DriveTrain extends Subsystem implements RobotMap {
 	 * -Appropriate values are given to the SmartDashboard
 	 *******************************************************************************/
 	private DriveTrain() {
+		dT = new RobotDrive(fL_Talon, bL_Talon, fR_Talon, bR_Talon);
+		/*
 		fL = new Talon(fL_Talon);
 		fR = new Talon(fR_Talon);
 		bL = new Talon(bL_Talon);
 		bR = new Talon(bR_Talon);
+		*/
 		
 		pdp = new PowerDistributionPanel();
 		
@@ -60,6 +65,8 @@ public class DriveTrain extends Subsystem implements RobotMap {
 	 * http://thinktank.wpi.edu/resources/346/ControllingMecanumDrive.pdf
 	 *******************************************************************************/
 	public void mecanumDrive() {
+		dT.mecanumDrive_Cartesian(OI.getJoystick().getSmartX(), -OI.getJoystick().getSmartZ(), -OI.getJoystick().getSmartY(), 0.0);
+		/*
 		fLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getJoystick().getSmartZ() * 0.25;
 		fRT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) - OI.getJoystick().getSmartZ() * 0.25;
 		bLT = OI.getJoystick().getSmartMag() * Math.sin(OI.getJoystick().getDirectionRadians() + (Math.PI / 8)) + OI.getJoystick().getSmartZ() * 0.4;
@@ -83,6 +90,7 @@ public class DriveTrain extends Subsystem implements RobotMap {
             bR.set(bRT);	
         
         logPower();
+        */
          
 	}
 	
@@ -95,6 +103,16 @@ public class DriveTrain extends Subsystem implements RobotMap {
 		SmartDashboard.putNumber("Back-left power: ", pdp.getCurrent(p_BL_Talon));
 		SmartDashboard.putNumber("Back-right power: ", pdp.getCurrent(p_BL_Talon));
 	}
+	
+	/*
+	public boolean checkSafe() {
+		if(pdp.getCurrent(p_FL_Talon) > 0 || pdp.getCurrent(p_FR_Talon) > 0 || pdp.getCurrent(p_BL_Talon) > 0 || pdp.getCurrent(p_BR_Talon) > 0) {
+			return Robot.air.safe = true;
+		}
+		return Robot.air.safe = false;
+	}
+	*/
+	
     public void initDefaultCommand() {
        setDefaultCommand(new MecanumDrive());
     }

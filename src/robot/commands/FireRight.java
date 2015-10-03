@@ -7,14 +7,11 @@ import robot.Robot;
  *
  */
 public class FireRight extends Command {
-
-	private boolean set;
 	
-    public FireRight(boolean fire) {
+    public FireRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.air);
-    	set = fire;
     }
 
     // Called just before this Command runs the first time
@@ -23,15 +20,12 @@ public class FireRight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-			Robot.air.RightShot(false);
-			Robot.air.RightShot(true);
-			Robot.air.RightShot(false);
-
+    	Robot.air.RightShot();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

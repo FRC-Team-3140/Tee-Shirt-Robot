@@ -12,6 +12,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
  * @author Ryan Cook
  */
 public interface RobotMap {
+	/***************
+	 * VARIABLES *
+	************** */
+
+	
 	/******************
 	 * MOTOR CHANNELS *
 	 ******************/

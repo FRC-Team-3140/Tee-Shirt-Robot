@@ -10,7 +10,7 @@ import robot.Robot;
  */
 public class FireLeft extends Command {
 	
-    public FireLeft(boolean fire) {
+    public FireLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.air);
@@ -22,14 +22,12 @@ public class FireLeft extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-			Robot.air.LeftShot(false);
-			Robot.air.LeftShot(true);
-			Robot.air.LeftShot(false);
+    	Robot.air.LeftShot();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

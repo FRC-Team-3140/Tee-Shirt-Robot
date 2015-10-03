@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import library.HatSwitch;
 import library.SmartJoystick;
+import robot.commands.CloseValves;
 import robot.commands.Lift;
 import robot.commands.FireLeft;
 import robot.commands.FireMiddle;
@@ -47,8 +48,8 @@ public class OI implements RobotMap {
 		fireM = new JoystickButton(smartJoystick, 3);
 		fireR = new JoystickButton(smartJoystick, 4);
 		fireS = new JoystickButton(smartJoystick, 6);
-		lUp = new JoystickButton(smartJoystick, 11);
-		lDown = new JoystickButton(smartJoystick, 12);
+		lUp = new JoystickButton(smartJoystick, 1);
+		lDown = new JoystickButton(smartJoystick,2);
 		//play3 = new JoystickButton(smartJoystick, play_3);
 		//play4 = new JoystickButton(smartJoystick, play_4);
 		//play5 = new JoystickButton(smartJoystick, play_5);
@@ -62,12 +63,13 @@ public class OI implements RobotMap {
 	 * @throws InterruptedException
 	 ********************************************************************************/
 	private void check() {
-		fireL.whenPressed(new FireLeft(true));
-		fireL.whenReleased(new FireLeft(false));
-		fireM.whenPressed(new FireMiddle(true));
-		fireM.whenReleased(new FireMiddle(true));
-		fireR.whenPressed(new FireRight(true));
-		fireS.whenReleased(new FireSalvo());
+		fireL.whenPressed(new FireLeft());
+		//fireL.whenReleased(new CloseValves());
+		fireM.whenPressed(new FireMiddle());
+		//fireM.whenReleased(new CloseValves());
+		fireR.whenPressed(new FireRight());
+		//fireS.whenReleased(new FireSalvo(1));
+	//	fireS.whenReleased(new CloseValves());
 		
 		lUp.whenPressed(new Lift(0.25));
 		lUp.whenReleased(new Lift(0));
