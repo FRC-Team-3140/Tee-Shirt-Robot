@@ -1,14 +1,9 @@
 package robot.subsystems;
 
-import java.util.concurrent.TimeUnit;
-
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import robot.RobotMap;
 import robot.commands.CloseValves;
-import robot.commands.FireLeft;
 
 /**
  *

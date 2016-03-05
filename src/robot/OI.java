@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import library.HatSwitch;
 import library.SmartJoystick;
-import robot.commands.CloseValves;
+//import robot.commands.CloseValves;
 import robot.commands.Lift;
 import robot.commands.FireLeft;
 import robot.commands.FireMiddle;
