@@ -1,4 +1,4 @@
-PR-ROBOT
+Tee-Shirt-ROBOT
 ======
 Code to drive Team 3140's PR t-shirt cannon robot. The robot uses the follow:
 - Mecanum drivetrain to move around
