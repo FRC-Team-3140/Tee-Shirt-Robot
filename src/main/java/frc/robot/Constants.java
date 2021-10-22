@@ -52,8 +52,8 @@ public interface Constants {
 		public static final int p_Lift_Talon = 13;
 
 		// Pnuematic solenoids (the valves that let air into the cannons)
-		public final static int r_Solenoid = 0;
-		public final static int m_Solenoid = 1;
-		public final static int l_Solenoid = 2;
+		// public final static int r_Solenoid = 0;
+		// public final static int m_Solenoid = 1;
+		// public final static int l_Solenoid = 2;
 	}
 }
