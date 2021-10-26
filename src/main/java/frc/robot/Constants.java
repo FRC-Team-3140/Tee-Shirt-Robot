@@ -34,10 +34,10 @@ public interface Constants {
 		 * MOTOR CHANNELS *
 		 ******************/
 		// Ports for the talons
-		public static final int fL_Talon = 9;
-		public static final int fR_Talon = 6;
-		public static final int bL_Talon = 8;
-		public static final int bR_Talon = 7;
+		public static final int fL_Talon = 8;
+		public static final int fR_Talon = 7;
+		public static final int bL_Talon = 9;
+		public static final int bR_Talon = 6;
 		public static final int lift_Talon = 5;
 
 		/***************

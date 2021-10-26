@@ -14,8 +14,8 @@ public class mDrive extends CommandBase {
 
   @Override
   public void execute() {
-    double forward = RobotContainer.xbox.getSmoothedMainY();
-    double strafe = RobotContainer.xbox.getSmoothedMainX();
+    double forward = RobotContainer.xbox.getSmoothedMainX();
+    double strafe = RobotContainer.xbox.getSmoothedMainY();
     double rotation = RobotContainer.xbox.getSmoothedAltX();
     RobotContainer.dt.mecanumDrive(forward, strafe, rotation);
   }

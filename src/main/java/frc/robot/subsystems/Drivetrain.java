@@ -11,7 +11,10 @@ public class Drivetrain extends SubsystemBase implements HardwareAdapter{
   private MecanumDrive dT;
 
   public Drivetrain() {
+    // backLeftMotor.setInverted(true);
+    // frontRightMotor.setInverted(true);
     dT = new MecanumDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
+
   }
 
   /***********
