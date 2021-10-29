@@ -1,9 +1,9 @@
 package frc.robot;
 
 import frc.robot.commands.drivetrain.mDrive;
-// import frc.robot.commands.pneumatics.cannons.*;
+import frc.robot.commands.pneumatics.cannons.*;
 import frc.robot.subsystems.Drivetrain;
-// import frc.robot.subsystems.Pneumatics;
+import frc.robot.subsystems.Pneumatics;
 import frc.libs.*;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -18,7 +18,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   //  are declared here.
   // All classes required by any class instantiated here must, be instantiated before the instatiated class.
   public static final Drivetrain dt = new Drivetrain();
-  // public static final Pneumatics pn = new Pneumatics();
+  public static final Pneumatics pn = new Pneumatics();
   
 
   // Xbox controllers
@@ -32,9 +32,9 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   }
 
   private void configureButtonBindings() {
-    // xbox.leftBumper.whenPressed(new FireLeft());
-    // xbox.y.whenPressed(new FireMiddle());
-    // xbox.rightBumper.whenPressed(new FireRight());
+    xbox.leftBumper.whenPressed(new FireLeft());
+    xbox.y.whenPressed(new FireMiddle());
+    xbox.rightBumper.whenPressed(new FireRight());
   }
 
   private void configureDefaultCommands() {
