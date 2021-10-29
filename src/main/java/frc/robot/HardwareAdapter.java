@@ -26,9 +26,9 @@ public interface HardwareAdapter extends Constants.ElectricalPortConstants {
 
     // Pnuematics
     // public static final Compressor compressor = new Compressor(PCM);
-    // public static final Solenoid leftSolenoid = new Solenoid(l_Solenoid, PCM);
-    // public static final Solenoid middleSolenoid = new Solenoid(m_Solenoid, PCM);
-    // public static final Solenoid rightSolenoid = new Solenoid(r_Solenoid, PCM);
+    public static final Solenoid leftSolenoid = new Solenoid(l_Solenoid, PCM);
+    public static final Solenoid middleSolenoid = new Solenoid(m_Solenoid, PCM);
+    public static final Solenoid rightSolenoid = new Solenoid(r_Solenoid, PCM);
     
     // Gyro
     // public static final AHRS navx = new AHRS(SPI.Port.kMXP);
