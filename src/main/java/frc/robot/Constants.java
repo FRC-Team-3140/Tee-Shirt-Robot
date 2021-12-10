@@ -27,7 +27,7 @@ public interface Constants {
 		public static final int xboxPrimaryDriver = 0;
 
 		// Other Can Bus
-		public final static int PDP = 0;
+		public final static int PDP = 8;
 		public final static int PCM = 1;
 
 		/******************

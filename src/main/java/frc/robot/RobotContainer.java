@@ -5,11 +5,6 @@ import frc.robot.commands.drivetrain.mDrive;
 import frc.robot.subsystems.Drivetrain;
 // import frc.robot.subsystems.Pneumatics;
 import frc.libs.*;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj2.command.Command;
 
 public class RobotContainer implements Constants.ElectricalPortConstants {
   // The robot's subsystems and OI devices
@@ -24,7 +19,7 @@ public class RobotContainer implements Constants.ElectricalPortConstants {
   // Xbox controllers
   public static final XboxController xbox = new XboxController(xboxPrimaryDriver);
 
-  private UsbCamera camera;
+  // private UsbCamera camera;
 
   public RobotContainer() {
     configureButtonBindings();
