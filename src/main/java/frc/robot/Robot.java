@@ -11,8 +11,8 @@ public class Robot extends TimedRobot {
   private Command autoCommand;
   private RobotContainer robotContainer;
   private AddressableLED m_led;
-  private AddressableLED f_led;
-  private AddressableLEDBuffer f_ledBuffer;
+  // private AddressableLED f_led;
+  // private AddressableLEDBuffer f_ledBuffer;
   private AddressableLEDBuffer m_ledBuffer;
   private int m_rainbowFirstPixelHue = 0;
   private int f_rainbowFirstPixelHue = 0;
@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
     // PWM port 9
     // Must be a PWM header, not MXP or DIO
     m_led = new AddressableLED(1);
-    f_led = new AddressableLED(0);
+    // f_led = new AddressableLED(0);
 
   
 
@@ -35,14 +35,14 @@ public class Robot extends TimedRobot {
     // Default to a length of 60, start empty output
     // Length is expensive to set, so only set it once, then just update data
     m_ledBuffer = new AddressableLEDBuffer(87);
-    f_ledBuffer = new AddressableLEDBuffer(55);
+    // f_ledBuffer = new AddressableLEDBuffer(55);
     m_led.setLength(m_ledBuffer.getLength());
-    f_led.setLength(f_ledBuffer.getLength());
+    // f_led.setLength(f_ledBuffer.getLength());
     // Set the data
     m_led.setData(m_ledBuffer);
     m_led.start();
-    f_led.setData(f_ledBuffer);
-    f_led.start();
+    // f_led.setData(f_ledBuffer);
+    // f_led.start();
     // led_timer = new Timer();
     // led_timer.start();
     robotContainer = new RobotContainer();
@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
     // setonoff();
     // Set the LEDs
     m_led.setData(m_ledBuffer);
-    f_led.setData(f_ledBuffer);
+    // f_led.setData(f_ledBuffer);
 
   }
 
@@ -93,23 +93,38 @@ public class Robot extends TimedRobot {
     for (var i = 0; i < m_ledBuffer.getLength(); i++) {
       // Calculate the hue - hue is easier for rainbows because the color
       // shape is a circle so only one value needs to precess
-      final var hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180;      
-      // Set the value
-      m_ledBuffer.setHSV(i, hue, 255, 128);
+      int hue;
+      if (i<55){
+        hue = (m_rainbowFirstPixelHue + (i * 180 / m_ledBuffer.getLength())) % 180; 
+        m_ledBuffer.setHSV(i, hue, 255, 128);
+      }
+      else
+      {
+        hue=0;
+       if ((m_rainbowFirstPixelHue%20)<10)
+       {
+        m_ledBuffer.setHSV(i, hue, 255, 0);
+       }
+        else
+        {
+        m_ledBuffer.setHSV(i, hue, 255, 128);
+        }
+
+      }
     }
-    for (var i = 0; i < f_ledBuffer.getLength(); i++) {
+    // for (var i = 0; i < f_ledBuffer.getLength(); i++) {
       // Calculate the hue - hue is easier for rainbows because the color
       // shape is a circle so only one value needs to precess
-      final var hue = (f_rainbowFirstPixelHue + (i * 180 / f_ledBuffer.getLength())) % 180;
+      // final var hue = (f_rainbowFirstPixelHue + (i * 180 / f_ledBuffer.getLength())) % 180;
       // Set the value
-      f_ledBuffer.setHSV(i, hue, 255, 128);
-    }
+      // f_ledBuffer.setHSV(i, hue, 255, 128);
+    // }
     // Increase by to make the rainbow "move"
     m_rainbowFirstPixelHue += 3;
-    f_rainbowFirstPixelHue += 3;
+    // f_rainbowFirstPixelHue += 3;
     // Check bounds
     m_rainbowFirstPixelHue %= 180;
-    f_rainbowFirstPixelHue %= 180;
+    // f_rainbowFirstPixelHue %= 180;
 
   }
 
